@@ -826,16 +826,16 @@ service cloud.firestore {
 > ✅ **Checkpoint 8.1** ถ่ายภาพหน้าจอผลการทดสอบทั้ง 4 ข้อ 
 
 1. ล็อกอินค้างไว้ แล้วปิดแอปทิ้งไปทั้งหมด (ไม่ใช่แค่ย่อ) 
-<img width="1470" height="922" alt="image" src="image/Screen Recording 22.10.25_full.gif" />
+<img width="1206" height="2622" alt="image" src="image/Screen Recording 22.10.25_full.gif" />
 
 2. ปิด WiFi/Data ของเครื่องให้หมด แล้วลองเปิดแท็บ "รายการโปรด" และ "ร่างของฉัน"
-<img width="1470" height="922" alt="image" src="image/Screen Recording 22.18.40_full.gif" />
+<img width="1206" height="2622" alt="image" src="image/Screen Recording 22.18.40_full.gif" />
 
 3. ขณะยังปิดเครือข่ายอยู่ ลองกด "โพสต์ขายจริง" กับร่างสักชิ้น
-<img width="1470" height="922" alt="image" src="image/Screen Recording 22.23.04_full.gif" />
+<img width="1206" height="2622" alt="image" src="image/Screen Recording 22.23.04_full.gif" />
 
 4. เปิดเครือข่ายกลับมา แล้วลองกด "โพสต์ขายจริง" รายการเดิมอีกครั้ง
-<img width="1470" height="922" alt="image" src="image/Screenshot iPhone 17 09-10-2569 BE at 22.25.23.png">
+<img width="1206" height="2622" alt="image" src="image/Screenshot iPhone 17 09-10-2569 BE at 22.25.23.png">
 
 ---
 
