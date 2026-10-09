@@ -175,7 +175,7 @@ Future<void> main() async {
 - (ข) ใส่รหัสผ่านสั้นเกินไป
 <img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 15 31 44" src="https://github.com/user-attachments/assets/280ef04a-bf13-4efc-be5f-4885372448e9" />
 
-- อธิบายโค้ดใน `auth_service.dart` ที่จัดการ Error
+#### อธิบายโค้ดใน `auth_service.dart` ที่จัดการ Error
 
 ทั้งสองกรณีเกิดตอนเรียก `signUp()` ซึ่งเรียก `createUserWithEmailAndPassword` ของ Firebase
 
