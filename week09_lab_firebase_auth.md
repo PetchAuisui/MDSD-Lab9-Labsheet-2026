@@ -752,15 +752,24 @@ HomePage รับ List<ItemRepository> และเรียกแค่ getIte
 - ระหว่างอัปโหลดให้แสดง Progress Indicator ตามที่อธิบายไว้ในหัวข้อ 9.7
 
 > ✅ **Checkpoint 6.1** โพสต์ขายจริงอย่างน้อย 2 รายการผ่านแอป ถ่ายภาพหน้าจอ Firebase Console เมนู Firestore Database ที่แสดง Collection `items` มีเอกสารที่โพสต์เข้ามาจริง พร้อม field `sellerId` ที่ตรงกับ `uid` ของบัญชีที่ใช้ทดสอบ และยืนยันว่าร่างทั้งสองรายการหายไปจาก `MyDraftsPage` แล้ว
+- ก่อนโพสต์ มีร่าง Samsung Galaxy และ Lenovo ThinkPad
+<img width="1206" height="2622" alt="image" src="https://github.com/user-attachments/assets/cf59ae16-a175-4461-9642-236e89c00720" />
+
+- หลังโพสต์ทั้งสองรายการ หน้าร่างว่าง "ยังไม่มีร่างประกาศ"
+<img width="1206" height="2622" alt="image" src="https://github.com/user-attachments/assets/1bd37341-ac0c-4e56-aa43-9442f1de4ca6" />
+
+- Firestore
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/bf0c9fd0-0be8-4a6c-a5b8-45dc583cfd5a" />
+
 
 
 > ✅ **Checkpoint 6.2** ถ่ายภาพหน้าจอ Firebase Console เมนู Storage ที่แสดงไฟล์รูปภาพที่อัปโหลดสำเร็จ และภาพหน้าจอ Firestore ที่แสดงว่าเอกสารมี field `imageUrl` เป็น URL จริงที่เปิดดูได้ ถ่ายภาพหน้าจอแอปที่แสดงรูปสินค้านั้นบนหน้า Home ผ่าน `Image.network(imageUrl)` ด้วย (ย้อนกลับไปถ่ายภาพ Checkpoint 5.1 ให้ครบตอนนี้ ถ้ายังไม่ได้ทำ)
 `uid` ของบัญชีที่ใช้ทดสอบ และยืนยันว่าร่างทั้งสองรายการหายไปจาก `MyDraftsPage` แล้ว
-- Firestore
-<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/c8401bb3-01df-4688-a555-e812b1710da9" />
+- Home
+<img width="1206" height="2622" alt="image" src="https://github.com/user-attachments/assets/4dff0dbe-a4ab-45e8-a42e-f24e9f9fa3b8" />
 
-- หน้า MyDraftsPage หลังกด "โพสต์ขายจริง"
-<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 21 18 10" src="https://github.com/user-attachments/assets/44c25b2a-9483-4f43-93fb-93127684a81c" />
+- หน้า Firebase Console เมนู Storage 
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/0ed306bb-098c-494b-b651-8eb6bad26ccc" />
 
 ---
 
