@@ -605,9 +605,22 @@ Widget build(BuildContext context) {
 1. ทำไมเราจึง "เพิ่ม Implementation ใหม่" (`ItemRepositoryFirestore`) แทนที่จะแก้ไข `ItemRepositoryApi` เดิม หรือเขียนโค้ดเรียก Firestore ตรงจาก `HomePage`?
 2. ถ้าในอนาคตอาจารย์สั่งให้เปลี่ยนจาก Fake Store API ไปใช้ API อื่น ต้องแก้ไฟล์กี่ไฟล์ ถ้าทุก Widget เรียกผ่าน Interface `ItemRepository` เท่านั้น?
 
-```text
-บันทึกคำตอบของคุณที่นี่
-```
+#### คำตอบ
+1. ทำไมเพิ่ม ItemRepositoryFirestore ใหม่ แทนแก้ของเดิมหรือเรียก Firestore จาก HomePage
+- ไม่แก้ ItemRepositoryApi
+  - โค้ดเดิมทำงานถูกต้องและทดสอบแล้ว การแก้ไฟล์เดิมเสี่ยงทำให้ฟีเจอร์ที่ใช้ได้อยู่พัง (หลัก Open/Closed: เปิดให้ขยาย ปิดไม่ให้แก้
+  - คลาสเดียวควรรับผิดชอบแหล่งข้อมูลเดียว (Single Responsibility) Fake Store API ใช้ HTTP/JSON ส่วน Firestore ใช้ Collection/Snapshot/Stream ถ้ารวมกันคลาสจะซับซ้อนและมีเหตุผลให้ต้องแก้สองทาง
+- ไม่เรียก Firestore จาก HomePage ตรงๆ
+  - UI จะผูกแน่นกับ Firebase (tight coupling) เปลี่ยนแหล่งข้อมูลต้องไล่แก้ทุกหน้า
+  - เขียน unit test ยาก เพราะต้อง mock Firebase ทั้งก้อน และใช้ logic ซ้ำในหน้าอื่นไม่ได้
+- ผลที่ได้ เมื่อสร้างเป็น implementation ใหม่ของ interface ItemRepository เดียวกัน UI รู้จักแค่ interface จึงสลับ API ↔ Firestore ↔ Fake (สำหรับเทสต์) ได้โดยไม่แตะ UI
+
+2. ถ้าเปลี่ยนไปใช้ API อื่น ต้องแก้กี่ไฟล์
+- 2 ไฟล์
+  1. สร้างไฟล์ใหม่ เช่น item_repository_other_api.dart ที่ implements ItemRepository (เพิ่มใหม่ ไม่ได้แก้ของเดิม)
+  2. แก้จุดสร้าง instance จุดเดียว (เช่น main.dart) จาก ItemRepositoryApi() เป็นคลาสใหม่
+- HomePage และ Widget อื่น แก้ 0 ไฟล์ เพราะเรียกผ่าน interface และไม่รู้ว่าข้อมูลมาจากไหน
+- ข้อควรระวัง ถ้า JSON ของ API ใหม่ต่างจากเดิม ให้แปลงเป็น model Item เดิมภายใน repository ใหม่ เพื่อไม่ให้กระทบ UI
 
 ### ขั้นตอนที่ 5.2: **นักศึกษาเขียน Code เอง** — ItemRepositoryFirestore
 
