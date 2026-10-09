@@ -417,27 +417,26 @@ avdmanager list avd
 - ภาพหน้าจอ Firebase Console
 <img width="1469" height="922" alt="image" src="https://github.com/user-attachments/assets/6e60e94b-284a-41ee-b3fd-afe3e947c7ab" />
 
-- อธิบายว่า `idToken` กับ `accessToken` ที่ได้จาก Google นำไปใช้ทำอะไรต่อในขั้นตอนการยืนยันตัวตนกับ Firebase
-```
-# idToken
- - เป็น JWT ที่ Google เซ็นรับรองไว้ ข้างในมีอีเมล ชื่อ และ ID ของผู้ใช้
- - ใช้เป็น **หลักฐานยืนยันตัวตน** ว่าคนนี้เป็นเจ้าของบัญชี Google นี้จริง
- - Firebase ตรวจว่าลายเซ็นถูกต้อง ยังไม่หมดอายุ และออกให้แอปของเราจริง
+#### อธิบายว่า `idToken` กับ `accessToken` ที่ได้จาก Google นำไปใช้ทำอะไรต่อในขั้นตอนการยืนยันตัวตนกับ Firebase
 
-# accessToken
- - เป็นโทเค็นที่ให้สิทธิ์เรียกใช้ Google API ในนามผู้ใช้ ตาม scope ที่ขอ (ในโค้ดขอ scope email)
- - ใน google_sign_in เวอร์ชันนี้ต้องขอแยกผ่าน authorizationClient
- - Firebase ใช้ประกอบกับ idToken เพื่อดึงข้อมูลโปรไฟล์จาก Google
+- idToken
+  - เป็น JWT ที่ Google เซ็นรับรองไว้ ข้างในมีอีเมล ชื่อ และ ID ของผู้ใช้
+  - ใช้เป็น **หลักฐานยืนยันตัวตน** ว่าคนนี้เป็นเจ้าของบัญชี Google นี้จริง
+  - Firebase ตรวจว่าลายเซ็นถูกต้อง ยังไม่หมดอายุ และออกให้แอปของเราจริง
 
-# ขั้นตอนการนำไปใช้กับ Firebase
-1. authenticate() เปิดหน้าเลือกบัญชี Google แล้วได้ googleUser
-2. อ่าน idToken จาก googleUser.authentication.idToken
-3. ขอ accessToken จาก googleUser.authorizationClient.authorizationForScopes(['email'])
-4. ห่อทั้งสองเป็น credential ด้วย GoogleAuthProvider.credential(idToken, accessToken)
-5. ส่งให้ FirebaseAuth.signInWithCredential(credential)
-6. Firebase ตรวจโทเค็นกับ Google ถ้าถูกต้องจะสร้างผู้ใช้ใหม่หรือเข้าสู่บัญชีเดิม แล้วออก session ของ Firebase ให้แอป
-7. authStateChanges() ส่งค่า User ใหม่ออกมา และผู้ใช้จะปรากฏใน Firebase Console โดย Provider เป็น Google
-```
+- accessToken
+  - เป็นโทเค็นที่ให้สิทธิ์เรียกใช้ Google API ในนามผู้ใช้ ตาม scope ที่ขอ (ในโค้ดขอ scope email)
+  - ใน google_sign_in เวอร์ชันนี้ต้องขอแยกผ่าน authorizationClient
+  - Firebase ใช้ประกอบกับ idToken เพื่อดึงข้อมูลโปรไฟล์จาก Google
+
+- ขั้นตอนการนำไปใช้กับ Firebase <br>
+  1.authenticate() เปิดหน้าเลือกบัญชี Google แล้วได้ googleUser<br>
+  2.อ่าน idToken จาก googleUser.authentication.idToken<br>
+  3.ขอ accessToken จาก googleUser.authorizationClient.authorizationForScopes(['email'])<br>
+  4.ห่อทั้งสองเป็น credential ด้วย GoogleAuthProvider.credential(idToken, accessToken)<br>
+  5.ส่งให้ FirebaseAuth.signInWithCredential(credential)<br>
+  6.Firebase ตรวจโทเค็นกับ Google ถ้าถูกต้องจะสร้างผู้ใช้ใหม่หรือเข้าสู่บัญชีเดิม แล้วออก session ของ Firebase ให้แอป<br>
+  7.authStateChanges() ส่งค่า User ใหม่ออกมา และผู้ใช้จะปรากฏใน Firebase Console โดย Provider เป็น Google<br>
 ---
 
 ## ส่วนที่ 4: AuthGate — สลับหน้าจอตามสถานะผู้ใช้
