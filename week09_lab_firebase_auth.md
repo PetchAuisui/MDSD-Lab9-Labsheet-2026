@@ -175,6 +175,22 @@ Future<void> main() async {
 - (ข) ใส่รหัสผ่านสั้นเกินไป
 <img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 15 31 44" src="https://github.com/user-attachments/assets/280ef04a-bf13-4efc-be5f-4885372448e9" />
 
+- อธิบายโค้ดใน `auth_service.dart` ที่จัดการ Error
+
+ทั้งสองกรณีเกิดตอนเรียก `signUp()` ซึ่งเรียก `createUserWithEmailAndPassword` ของ Firebase
+
+**หลักการทำงาน**
+
+1. เมื่อ Firebase ปฏิเสธคำขอ จะโยน `FirebaseAuthException` ออกมา
+2. บล็อก `on FirebaseAuthException catch (e)` ใน `signUp()` จะจับไว้ แล้วส่ง `e` ไปให้ `_handleFirebaseAuthException(e)`
+3. เมธอดนี้ใช้ `switch (e.code)` แปลง code เป็นข้อความภาษาไทย แล้วส่งกลับไปแสดงบนหน้าจอ
+
+**แต่ละกรณีถูกจัดการที่ไหน**
+
+| กรณี | `e.code` | `case` ที่จัดการ | ข้อความที่แสดง |
+|---|---|---|---|
+| (ก) สมัครซ้ำด้วย Email เดิม | `email-already-in-use` | `case 'email-already-in-use'` | อีเมลนี้ถูกใช้งานแล้วในระบบ |
+| (ข) รหัสผ่านสั้นเกินไป | `weak-password` | `case 'weak-password'` | รหัสผ่านคาดเดาง่ายเกินไป ต้องมีอย่างน้อย 6 ตัวอักษร |
 
 
 ---
@@ -392,10 +408,36 @@ avdmanager list avd
 
 > ✅ **Checkpoint 3.1** ทดสอบกดปุ่มเข้าสู่ระบบด้วย Google ด้วยบัญชี Google จริงของคุณ ถ่ายภาพหน้าจอตอนเลือกบัญชี Google และภาพหน้าจอ Firebase Console ที่แสดงว่ามีผู้ใช้ใหม่ Provider เป็น Google เพิ่มเข้ามา อธิบายว่า `idToken` กับ `accessToken` ที่ได้จาก Google นำไปใช้ทำอะไรต่อในขั้นตอนการยืนยันตัวตนกับ Firebase (อ้างอิงหัวข้อ 9.4)
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่ และคำอธิบาย
-```
+- ทดสอบกดปุ่มเข้าสู่ระบบด้วย Google ด้วยบัญชี Google จริงของคุณ
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 17 05 41" src="https://github.com/user-attachments/assets/22ff33f1-fadc-4bb0-97c8-c33a6ed5a7c2" />
 
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 17 05 48" src="https://github.com/user-attachments/assets/6bcce29d-4d2b-4e5c-a64b-9f9cec14ed0c" />
+
+
+- ภาพหน้าจอ Firebase Console
+<img width="1469" height="922" alt="image" src="https://github.com/user-attachments/assets/6e60e94b-284a-41ee-b3fd-afe3e947c7ab" />
+
+- อธิบายว่า `idToken` กับ `accessToken` ที่ได้จาก Google นำไปใช้ทำอะไรต่อในขั้นตอนการยืนยันตัวตนกับ Firebase
+```
+# idToken
+ - เป็น JWT ที่ Google เซ็นรับรองไว้ ข้างในมีอีเมล ชื่อ และ ID ของผู้ใช้
+ - ใช้เป็น **หลักฐานยืนยันตัวตน** ว่าคนนี้เป็นเจ้าของบัญชี Google นี้จริง
+ - Firebase ตรวจว่าลายเซ็นถูกต้อง ยังไม่หมดอายุ และออกให้แอปของเราจริง
+
+# accessToken
+ - เป็นโทเค็นที่ให้สิทธิ์เรียกใช้ Google API ในนามผู้ใช้ ตาม scope ที่ขอ (ในโค้ดขอ scope email)
+ - ใน google_sign_in เวอร์ชันนี้ต้องขอแยกผ่าน authorizationClient
+ - Firebase ใช้ประกอบกับ idToken เพื่อดึงข้อมูลโปรไฟล์จาก Google
+
+# ขั้นตอนการนำไปใช้กับ Firebase
+1. authenticate() เปิดหน้าเลือกบัญชี Google แล้วได้ googleUser
+2. อ่าน idToken จาก googleUser.authentication.idToken
+3. ขอ accessToken จาก googleUser.authorizationClient.authorizationForScopes(['email'])
+4. ห่อทั้งสองเป็น credential ด้วย GoogleAuthProvider.credential(idToken, accessToken)
+5. ส่งให้ FirebaseAuth.signInWithCredential(credential)
+6. Firebase ตรวจโทเค็นกับ Google ถ้าถูกต้องจะสร้างผู้ใช้ใหม่หรือเข้าสู่บัญชีเดิม แล้วออก session ของ Firebase ให้แอป
+7. `authStateChanges()` ส่งค่า User ใหม่ออกมา และผู้ใช้จะปรากฏใน Firebase Console โดย Provider เป็น Google
+```
 ---
 
 ## ส่วนที่ 4: AuthGate — สลับหน้าจอตามสถานะผู้ใช้
