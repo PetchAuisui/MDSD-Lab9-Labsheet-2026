@@ -1,4 +1,4 @@
-<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 15 31 26" src="https://github.com/user-attachments/assets/996a0d61-5b2f-4aea-8afe-4f91a74c0225" /># ใบงานปฏิบัติสัปดาห์ที่ 9 Cloud Database — Firebase & Authentication
+# ใบงานปฏิบัติสัปดาห์ที่ 9 Cloud Database — Firebase & Authentication
 
 **เครื่องมือ** Flutter, Firebase Console, FlutterFire CLI, Firebase Authentication, Cloud Firestore, Firebase Storage, google_sign_in
 
