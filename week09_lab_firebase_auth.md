@@ -436,7 +436,7 @@ avdmanager list avd
 4. ห่อทั้งสองเป็น credential ด้วย GoogleAuthProvider.credential(idToken, accessToken)
 5. ส่งให้ FirebaseAuth.signInWithCredential(credential)
 6. Firebase ตรวจโทเค็นกับ Google ถ้าถูกต้องจะสร้างผู้ใช้ใหม่หรือเข้าสู่บัญชีเดิม แล้วออก session ของ Firebase ให้แอป
-7. `authStateChanges()` ส่งค่า User ใหม่ออกมา และผู้ใช้จะปรากฏใน Firebase Console โดย Provider เป็น Google
+7. authStateChanges() ส่งค่า User ใหม่ออกมา และผู้ใช้จะปรากฏใน Firebase Console โดย Provider เป็น Google
 ```
 ---
 
