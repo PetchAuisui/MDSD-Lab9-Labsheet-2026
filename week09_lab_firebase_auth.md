@@ -690,10 +690,20 @@ final pages = [
 > 🔧 **อย่าลืมแก้ `auth_gate.dart` ด้วย** ตอนนี้ `MainScaffold` รับ `itemRepositories` (List) แล้ว ให้กลับไปเปลี่ยนบรรทัด `itemRepository: itemRepositories.first` ใน `AuthGate.build()` (ขั้นตอนที่ 4.1) เป็น `itemRepositories: itemRepositories` ตามเดิม ไม่เช่นนั้นจะเกิด Error ตรงกันข้ามกับก่อนหน้านี้ (ส่งพารามิเตอร์ชื่อ `itemRepository` ที่ `MainScaffold` ไม่รู้จักอีกต่อไป)
 
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอ Home ที่แสดงสินค้าจากทั้งสองแหล่งข้อมูลปนกันอยู่ในลิสต์เดียว พร้อม Badge ที่แยกแหล่งที่มาชัดเจน (ถ้ายังไม่เคยมีประกาศจริงใน Firestore เลย ให้ทำส่วนที่ 6 ให้เสร็จก่อนแล้วย้อนกลับมาถ่ายภาพ Checkpoint นี้) อธิบายว่าการออกแบบให้ `HomePage` ไม่รู้จัก `ItemRepositoryApi`/`ItemRepositoryFirestore` โดยตรง แต่รู้จักผ่าน Interface `ItemRepository` เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 20 12 28" src="https://github.com/user-attachments/assets/425c911b-a882-4c01-bd5f-6c29ecb85bbd" />
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่ และคำอธิบาย
-```
+#### อธิบายว่าการออกแบบให้ `HomePage` ไม่รู้จัก `ItemRepositoryApi`/`ItemRepositoryFirestore` โดยตรง แต่รู้จักผ่าน Interface `ItemRepository` เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร
+
+HomePage รับ List<ItemRepository> และเรียกแค่ getItems() โดยไม่รู้ว่าเบื้องหลังเป็น ItemRepositoryApi (HTTP) หรือ ItemRepositoryFirestore (Firebase) การออกแบบนี้ช่วยได้ 2 เรื่อง
+1. ทดสอบง่ายขึ้น
+- เขียน Fake repository ง่ายๆ ที่คืนรายการสินค้าตายตัว แล้วส่งเข้า HomePage ตอนเทสต์ได้เลย ไม่ต้องต่ออินเทอร์เน็ต ไม่ต้อง mock Firebase และไม่ต้องล็อกอิน
+- จำลองสถานการณ์ได้ตามต้องการ เช่น ลิสต์ว่าง, ข้อมูลเยอะ หรือ repository ที่ throw error แล้วเช็กว่า UI แสดงผลถูก
+- ผลเทสต์ไม่แกว่งตาม API ภายนอกที่อาจล่ม (เหมือน Fake Store API ที่เคยล่มจนต้องมี fallback)
+
+2. เปลี่ยนหรือเพิ่มแหล่งข้อมูลง่ายขึ้น
+- โปรเจกต์นี้พิสูจน์แล้ว: เพิ่ม ItemRepositoryFirestore เป็นแหล่งที่ 2 โดย HomePage เปลี่ยนแค่รับเป็น List แล้วรวมผลด้วย Future.wait ไม่ต้องรู้ว่าแต่ละตัวทำงานอย่างไร
+- ถ้าอาจารย์สั่งเปลี่ยนไปใช้ API อื่น แค่เขียนคลาสใหม่ที่ implements ItemRepository แล้วเปลี่ยนจุดสร้าง instance ใน main.dart ส่วน HomePage, MainScaffold และ AuthGate ไม่ต้องแก้
+- ข้อผิดพลาดและการแปลงข้อมูล (เช่น JSON → Item) อยู่ในคลาส repository ของแต่ละแหล่ง ไม่รั่วเข้า UI
 
 ---
 
