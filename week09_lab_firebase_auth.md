@@ -617,8 +617,8 @@ Widget build(BuildContext context) {
 
 2. ถ้าเปลี่ยนไปใช้ API อื่น ต้องแก้กี่ไฟล์
 - 2 ไฟล์
-  1. สร้างไฟล์ใหม่ เช่น item_repository_other_api.dart ที่ implements ItemRepository (เพิ่มใหม่ ไม่ได้แก้ของเดิม)
-  2. แก้จุดสร้าง instance จุดเดียว (เช่น main.dart) จาก ItemRepositoryApi() เป็นคลาสใหม่
+  1.สร้างไฟล์ใหม่ เช่น item_repository_other_api.dart ที่ implements ItemRepository (เพิ่มใหม่ ไม่ได้แก้ของเดิม) <br>
+  2.แก้จุดสร้าง instance จุดเดียว (เช่น main.dart) จาก ItemRepositoryApi() เป็นคลาสใหม่ 
 - HomePage และ Widget อื่น แก้ 0 ไฟล์ เพราะเรียกผ่าน interface และไม่รู้ว่าข้อมูลมาจากไหน
 - ข้อควรระวัง ถ้า JSON ของ API ใหม่ต่างจากเดิม ให้แปลงเป็น model Item เดิมภายใน repository ใหม่ เพื่อไม่ให้กระทบ UI
 
