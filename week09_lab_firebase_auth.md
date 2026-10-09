@@ -753,15 +753,14 @@ HomePage รับ List<ItemRepository> และเรียกแค่ getIte
 
 > ✅ **Checkpoint 6.1** โพสต์ขายจริงอย่างน้อย 2 รายการผ่านแอป ถ่ายภาพหน้าจอ Firebase Console เมนู Firestore Database ที่แสดง Collection `items` มีเอกสารที่โพสต์เข้ามาจริง พร้อม field `sellerId` ที่ตรงกับ `uid` ของบัญชีที่ใช้ทดสอบ และยืนยันว่าร่างทั้งสองรายการหายไปจาก `MyDraftsPage` แล้ว
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่
-```
 
 > ✅ **Checkpoint 6.2** ถ่ายภาพหน้าจอ Firebase Console เมนู Storage ที่แสดงไฟล์รูปภาพที่อัปโหลดสำเร็จ และภาพหน้าจอ Firestore ที่แสดงว่าเอกสารมี field `imageUrl` เป็น URL จริงที่เปิดดูได้ ถ่ายภาพหน้าจอแอปที่แสดงรูปสินค้านั้นบนหน้า Home ผ่าน `Image.network(imageUrl)` ด้วย (ย้อนกลับไปถ่ายภาพ Checkpoint 5.1 ให้ครบตอนนี้ ถ้ายังไม่ได้ทำ)
+`uid` ของบัญชีที่ใช้ทดสอบ และยืนยันว่าร่างทั้งสองรายการหายไปจาก `MyDraftsPage` แล้ว
+- Firestore
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/c8401bb3-01df-4688-a555-e812b1710da9" />
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่
-```
+- หน้า MyDraftsPage หลังกด "โพสต์ขายจริง"
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 21 18 10" src="https://github.com/user-attachments/assets/44c25b2a-9483-4f43-93fb-93127684a81c" />
 
 ---
 
