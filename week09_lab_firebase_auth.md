@@ -759,7 +759,11 @@ HomePage รับ List<ItemRepository> และเรียกแค่ getIte
 <img width="1206" height="2622" alt="image" src="https://github.com/user-attachments/assets/1bd37341-ac0c-4e56-aa43-9442f1de4ca6" />
 
 - Firestore
-<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/bf0c9fd0-0be8-4a6c-a5b8-45dc583cfd5a" />
+  - ชิ้นที่ 1  
+    <img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/bf0c9fd0-0be8-4a6c-a5b8-45dc583cfd5a" />
+  - ชิ้นที่ 2
+    <img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/6e569872-1a6a-4b2d-92af-383d9cede629" />
+
 
 
 
@@ -767,6 +771,9 @@ HomePage รับ List<ItemRepository> และเรียกแค่ getIte
 `uid` ของบัญชีที่ใช้ทดสอบ และยืนยันว่าร่างทั้งสองรายการหายไปจาก `MyDraftsPage` แล้ว
 - Home
 <img width="1206" height="2622" alt="image" src="https://github.com/user-attachments/assets/4dff0dbe-a4ab-45e8-a42e-f24e9f9fa3b8" />
+
+- Firestore ที่แสดงว่าเอกสารมี field `imageUrl`
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/14a61d6f-dd12-45d8-93a3-858aaf6c9dcc" />
 
 - หน้า Firebase Console เมนู Storage 
 <img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/0ed306bb-098c-494b-b651-8eb6bad26ccc" />
