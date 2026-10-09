@@ -572,12 +572,29 @@ Widget build(BuildContext context) {
 เพิ่มปุ่ม "ออกจากระบบ" ใน AppBar ของ `HomePage` ที่เรียก `AuthService().signOut()`
 
 > ✅ **Checkpoint 4.1** ถ่ายภาพหน้าจอ 3 ภาพเรียงกัน คือ (ก) แอปตอนเพิ่งเปิดขึ้นมาครั้งแรกแบบยังไม่ล็อกอิน แสดงหน้า Login (ข) หลังล็อกอินสำเร็จ แอปสลับไปแสดง `MainScaffold` อัตโนมัติโดยไม่ต้องกดอะไรเพิ่ม และ (ค) หลังกด "ออกจากระบบ" แอปสลับกลับไปหน้า Login เอง อธิบายว่าทำไมการใช้ `StreamBuilder` ฟัง `authStateChanges()` จึงทำให้ไม่ต้องเขียนโค้ดสั่ง Navigate ไปมาเอง
+- (ก) แอปตอนเพิ่งเปิดขึ้นมาครั้งแรกแบบยังไม่ล็อกอิน แสดงหน้า Login
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 18 59 40" src="https://github.com/user-attachments/assets/16ecf133-b891-4eac-a3bb-6aae6f26d448" />
 
+- (ข) หลังล็อกอินสำเร็จ แอปสลับไปแสดง `MainScaffold` อัตโนมัติโดยไม่ต้องกดอะไรเพิ่ม
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 19 00 10" src="https://github.com/user-attachments/assets/67c8a830-3b7d-4b81-ad2d-152353673914" />
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่ (3 ภาพ) และคำอธิบาย
-```
+- (ค) หลังกด "ออกจากระบบ" แอปสลับกลับไปหน้า Login เอง
+<img width="1206" height="2622" alt="Screen Recording iPhone 17 09-10-2569 BE at 19 00 22" src="https://github.com/user-attachments/assets/fe854db1-5cf5-4a3f-8543-c167a5c05443" />
 
+คำอธิบาย ทำไมการใช้ StreamBuilder ฟัง authStateChanges() จึงทำให้ไม่ต้องเขียนโค้ดสั่ง Navigate ไปมาเอง?
+1. **การทำงานแบบ Reactive ผ่าน Stream (`authStateChanges()`)**:
+   - `FirebaseAuth.instance.authStateChanges()` ส่งค่ากลับมาเป็น `Stream<User?>` ซึ่งทำหน้าที่แจ้งเตือน (emit) สถานะของ Authentication ทันทีที่มีการเปลี่ยนแปลงในระบบ:
+     - เมื่อผู้ใช้เข้าสู่ระบบสำเร็จ → ส่งออบเจกต์ `User`
+     - เมื่อผู้ใช้กดออกจากระบบ (`signOut()`) หรือยังไม่ได้เข้าสู่ระบบ → ส่งค่า `null`
+2. **การ Rebuild อัตโนมัติของ `StreamBuilder`**:
+   - `AuthGate` ทำหน้าที่เป็น Root Widget คอยดักฟัง (Listen) สตรีมดังกล่าวผ่าน `StreamBuilder<User?>`
+   - ทุกครั้งที่ค่าใน Stream เปลี่ยนแปลง ฟังก์ชัน `builder` ของ `StreamBuilder` จะถูกเรียกทำงานใหม่ทันทีโดยอัตโนมัติ:
+     - หาก `snapshot.data == null` → แสดงวิดเจ็ต `LoginPage()`
+     - หาก `snapshot.data` มีข้อมูล `User` → แสดงวิดเจ็ต `MainScaffold(...)`
+3. **การสลับหน้าจอในระดับ Widget Tree (Declarative UI)**:
+   - สถาปัตยกรรมของ Flutter เป็นแบบ Declarative UI การแสดงผลหน้าจอจะเปลี่ยนไปตาม State ที่เป็นจริง
+   - เมื่อใช้ `StreamBuilder` ในการสลับวิดเจ็ตโดยตรง จึงไม่จำเป็นต้องเขียนคำสั่งแบบ Imperative เช่น `Navigator.push()` หรือ `Navigator.pop()` เพื่อจัดการหน้าจอด้วยตนเอง
+   - ช่วยลดความซับซ้อน ป้องกันปัญหา Route Stack ซ้อนทับ และทำให้ระบบ Authentication จัดการสถานะได้อย่างปลอดภัยและแม่นยำตลอดทั้งแอป
 ---
 
 ## ส่วนที่ 5: ขยาย Repository Pattern ด้วย ItemRepositoryFirestore
