@@ -1,4 +1,4 @@
-# ใบงานปฏิบัติสัปดาห์ที่ 9 Cloud Database — Firebase & Authentication
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 15 31 26" src="https://github.com/user-attachments/assets/996a0d61-5b2f-4aea-8afe-4f91a74c0225" /># ใบงานปฏิบัติสัปดาห์ที่ 9 Cloud Database — Firebase & Authentication
 
 **เครื่องมือ** Flutter, Firebase Console, FlutterFire CLI, Firebase Authentication, Cloud Firestore, Firebase Storage, google_sign_in
 
@@ -163,9 +163,19 @@ Future<void> main() async {
 
 > ✅ **Checkpoint 2.1** ทดสอบสมัครสมาชิกด้วย Email ใหม่สำเร็จ ถ่ายภาพหน้าจอ Firebase Console เมนู Authentication → Users ที่แสดงบัญชีที่เพิ่งสมัคร จากนั้นทดสอบกรณีผิดพลาด 2 กรณี คือ (ก) สมัครซ้ำด้วย Email เดิม และ (ข) ใส่รหัสผ่านสั้นเกินไป ถ่ายภาพหน้าจอข้อความ Error ทั้งสองกรณี พร้อมอธิบายว่าโค้ดส่วนใดใน `auth_service.dart` เป็นตัวจัดการแต่ละกรณี
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่ และคำอธิบายของแต่ละกรณี
-```
+- ทดสอบสมัครสมาชิกด้วย Email ใหม่สำเร็จ
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 14 57 53" src="https://github.com/user-attachments/assets/e42ffe88-9b6b-4203-95d1-766f493f1d08" />
+
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/d09799a5-c921-4bba-9743-0ad0a6a08a90" />
+
+ทดสอบกรณีผิดพลาด 2 กรณี คือ 
+- (ก) สมัครซ้ำด้วย Email เดิม
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 15 31 26" src="https://github.com/user-attachments/assets/4e46e3cb-3bf3-4a8b-88a2-6a12146344e9" />
+
+- (ข) ใส่รหัสผ่านสั้นเกินไป
+<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 15 31 44" src="https://github.com/user-attachments/assets/280ef04a-bf13-4efc-be5f-4885372448e9" />
+
+
 
 ---
 
