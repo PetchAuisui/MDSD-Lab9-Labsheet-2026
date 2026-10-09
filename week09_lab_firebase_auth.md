@@ -578,7 +578,7 @@ Widget build(BuildContext context) {
 <img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 19 00 10" src="https://github.com/user-attachments/assets/67c8a830-3b7d-4b81-ad2d-152353673914" />
 
 - (ค) หลังกด "ออกจากระบบ" แอปสลับกลับไปหน้า Login เอง
-<img width="1206" height="2622" alt="Screen Recording iPhone 17 09-10-2569 BE at 19 00 22" src="https://github.com/user-attachments/assets/fe854db1-5cf5-4a3f-8543-c167a5c05443" />
+<img width="1206" height="2622" alt="Screen Recording iPhone 17 09-10-2569 BE at 19 28 02" src="https://github.com/user-attachments/assets/54fce60f-42b2-408b-82c1-fb4e0293a544" />
 
 คำอธิบาย ทำไมการใช้ StreamBuilder ฟัง authStateChanges() จึงทำให้ไม่ต้องเขียนโค้ดสั่ง Navigate ไปมาเอง?
 1. **การทำงานแบบ Reactive ผ่าน Stream (`authStateChanges()`)**:
