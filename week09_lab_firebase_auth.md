@@ -800,9 +800,12 @@ service cloud.firestore {
 
 > ✅ **Checkpoint 7.1 (Self-Study)** ถ่ายภาพหน้าจอผลการทดลองทั้ง 2 กรณีใน Rules Playground เขียนอธิบายสั้น ๆ ว่าทำไม Client-side Validation (การไม่แสดงปุ่มแก้ไขให้เห็น) เพียงอย่างเดียวจึงไม่เพียงพอต่อความปลอดภัยของข้อมูลจริง
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่ และคำอธิบาย
-```
+- (ก) UID เจ้าของ = Simulated write allowed
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/09a16181-a557-4e24-b1bf-1fc60058b38c" />
+
+- (ข) UID อื่น (someone-else) = Simulated write denied
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/cd51791c-9b9b-477c-a384-70b1bd75d46c" />
+
 
 ---
 
