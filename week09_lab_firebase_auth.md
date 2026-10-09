@@ -616,7 +616,7 @@ Widget build(BuildContext context) {
 - ผลที่ได้ เมื่อสร้างเป็น implementation ใหม่ของ interface ItemRepository เดียวกัน UI รู้จักแค่ interface จึงสลับ API ↔ Firestore ↔ Fake (สำหรับเทสต์) ได้โดยไม่แตะ UI
 
 2. ถ้าเปลี่ยนไปใช้ API อื่น ต้องแก้กี่ไฟล์
-- 2 ไฟล์
+- 2 ไฟล์ <br>
   1.สร้างไฟล์ใหม่ เช่น item_repository_other_api.dart ที่ implements ItemRepository (เพิ่มใหม่ ไม่ได้แก้ของเดิม) <br>
   2.แก้จุดสร้าง instance จุดเดียว (เช่น main.dart) จาก ItemRepositoryApi() เป็นคลาสใหม่ 
 - HomePage และ Widget อื่น แก้ 0 ไฟล์ เพราะเรียกผ่าน interface และไม่รู้ว่าข้อมูลมาจากไหน
