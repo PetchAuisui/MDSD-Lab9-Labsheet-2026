@@ -690,7 +690,7 @@ final pages = [
 > 🔧 **อย่าลืมแก้ `auth_gate.dart` ด้วย** ตอนนี้ `MainScaffold` รับ `itemRepositories` (List) แล้ว ให้กลับไปเปลี่ยนบรรทัด `itemRepository: itemRepositories.first` ใน `AuthGate.build()` (ขั้นตอนที่ 4.1) เป็น `itemRepositories: itemRepositories` ตามเดิม ไม่เช่นนั้นจะเกิด Error ตรงกันข้ามกับก่อนหน้านี้ (ส่งพารามิเตอร์ชื่อ `itemRepository` ที่ `MainScaffold` ไม่รู้จักอีกต่อไป)
 
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอ Home ที่แสดงสินค้าจากทั้งสองแหล่งข้อมูลปนกันอยู่ในลิสต์เดียว พร้อม Badge ที่แยกแหล่งที่มาชัดเจน (ถ้ายังไม่เคยมีประกาศจริงใน Firestore เลย ให้ทำส่วนที่ 6 ให้เสร็จก่อนแล้วย้อนกลับมาถ่ายภาพ Checkpoint นี้) อธิบายว่าการออกแบบให้ `HomePage` ไม่รู้จัก `ItemRepositoryApi`/`ItemRepositoryFirestore` โดยตรง แต่รู้จักผ่าน Interface `ItemRepository` เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร
-<img width="1206" height="2622" alt="Screenshot iPhone 17 09-10-2569 BE at 20 12 28" src="https://github.com/user-attachments/assets/425c911b-a882-4c01-bd5f-6c29ecb85bbd" />
+<img width="1206" height="2622" alt="image" src="https://github.com/user-attachments/assets/dd5659f8-644b-46a0-ae65-127d60fa9b75" />
 
 #### อธิบายว่าการออกแบบให้ `HomePage` ไม่รู้จัก `ItemRepositoryApi`/`ItemRepositoryFirestore` โดยตรง แต่รู้จักผ่าน Interface `ItemRepository` เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร
 
