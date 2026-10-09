@@ -806,6 +806,9 @@ service cloud.firestore {
 - (ข) UID อื่น (someone-else) = Simulated write denied
 <img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/cd51791c-9b9b-477c-a384-70b1bd75d46c" />
 
+- คำอธิบาย
+> การซ่อนปุ่มแก้ไขในแอปไม่ปลอดภัยพอ เพราะคนที่เขียนโปรแกรมเป็นสามารถเลี่ยงแอป แล้วสั่งแก้หรือลบข้อมูลในฐานข้อมูลโดยตรงได้เลย
+> ดังนั้นต้องมีกฎป้องกันที่ฐานข้อมูล (Security Rules) ซึ่งตรวจทุกคำสั่งเสมอ จากการทดลอง คนที่เป็นเจ้าของประกาศ (uid ตรงกับ sellerId) แก้ได้ แต่คนอื่นถูกปฏิเสธ
 
 ---
 
